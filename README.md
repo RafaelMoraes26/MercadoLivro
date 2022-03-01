@@ -19,5 +19,4 @@
 #### Rafael Gomes Moraes.
 #
 
-<img src="https://img.shields.io/static/v1?label=API&message=Kotlin&color=7F52FF&style=for-the-badge&logo=Kotlin"/>
-<img src="https://img.shields.io/static/v1?label=API&message=Spring&color=6DB33F&style=for-the-badge&logo=Spring"/>
+<img src="https://img.shields.io/static/v1?label=API&message=Kotlin&color=7F52FF&style=for-the-badge&logo=Kotlin"/> <img src="https://img.shields.io/static/v1?label=API&message=Spring&color=6DB33F&style=for-the-badge&logo=Spring"/>

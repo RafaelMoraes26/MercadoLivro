@@ -2,57 +2,49 @@ package com.mercadolivro.controller
 
 import com.mercadolivro.controller.request.PostCustomerRequest
 import com.mercadolivro.controller.request.PutCustomerRequest
+import com.mercadolivro.extension.toCustomerModel
 import com.mercadolivro.model.CustomerModel
+import com.mercadolivro.service.CustomerService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/customers")
-class CustomerController {
-
-    val customers = mutableListOf<CustomerModel>()
-
+class CustomerController (val customerService: CustomerService) {
 
     @GetMapping
     fun getAllCustomers(@RequestParam name: String?): List<CustomerModel> {
-        name?.let { return customers.filter { it.name.contains(name, true) } }
-        return customers
+        return customerService.getAllCustomers(name)
     }
 
     @GetMapping("/{id}")
     fun getSpecificCustomer(@PathVariable id: Int): CustomerModel? {
-        return customers.find { c -> c.id == id }
+        return customerService.getSpecificCustomer(id)
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     fun createCustomer(@RequestBody customer: PostCustomerRequest) {
-        val lastId: Int = customers.findLast { true }?.id ?: 0
-        customers.add(CustomerModel(lastId + 1, customer.name, customer.email))
+        customerService.createCustomer(customer.toCustomerModel())
     }
 
     @PostMapping("/multiple")
     @ResponseStatus(HttpStatus.CREATED)
     fun createMultipleCustomers(@RequestBody customer: List<PostCustomerRequest>) {
-        customer.forEach { c ->
-            val lastId: Int = customers.findLast { true }?.id ?: 0
-            customers.add(CustomerModel(lastId + 1, c.name, c.email))
-        }
-
-    }
-
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun deleteCustomer(@PathVariable id: Int) {
-        customers.removeIf { it.id == id }
+        val customers = mutableListOf<CustomerModel>()
+        customer.forEach { c -> customers.add(c.toCustomerModel() )}
+        customerService.createMultipleCustomers(customers)
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun updateCustomer(@PathVariable id: Int, @RequestBody customer: PutCustomerRequest) {
-        customers.find { c -> c.id == id }.let {
-            it?.name = customer.name
-            it?.email = customer.email
-        }
+        customerService.updateCustomer(customer.toCustomerModel(id))
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun deleteCustomer(@PathVariable id: Int) {
+        customerService.deleteCustomer(id)
     }
 }

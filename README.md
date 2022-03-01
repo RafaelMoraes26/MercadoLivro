@@ -6,7 +6,7 @@
 ### Features
 
 - [x] Adição de camada de Controller
-- [ ] Adição de camada de Service
+- [x] Adição de camada de Service
 - [ ] Adição de camada de persistência em banco de dados
 - [ ] ...
 #

@@ -1,0 +1,150 @@
+{
+	"info": {
+		"_postman_id": "91c659ee-d5f0-4d7b-80c0-0228178f0a26",
+		"name": "Mercado Livro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "getAllCustomers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API-CUSTOMER}}",
+							"host": [
+								"{{API-CUSTOMER}}"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "rafael",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSpecificCustomer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API-CUSTOMER}}/1",
+							"host": [
+								"{{API-CUSTOMER}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createCostumer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Katia\",\r\n    \"email\": \"katia@email.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API-CUSTOMER}}",
+							"host": [
+								"{{API-CUSTOMER}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createMultipleCostumer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"name\": \"Katia\",\r\n        \"email\": \"katia@email.com\"\r\n    },\r\n    {\r\n        \"name\": \"Rafael\",\r\n        \"email\": \"rafael@email.com\"\r\n    },\r\n    {\r\n        \"name\": \"Pedro\",\r\n        \"email\": \"pedro@email.com\"\r\n    },\r\n    {\r\n        \"name\": \"Jose\",\r\n        \"email\": \"jose@email.com\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API-CUSTOMER}}",
+							"host": [
+								"{{API-CUSTOMER}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createCostumer Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Katia\",\r\n    \"email\": \"katia@email.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API-CUSTOMER}}/1",
+							"host": [
+								"{{API-CUSTOMER}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCustomer",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Rafael\",\r\n    \"email\": \"rafael@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API-CUSTOMER}}/1",
+							"host": [
+								"{{API-CUSTOMER}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

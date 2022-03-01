@@ -7,7 +7,7 @@
 
 - [x] Adição de camada de Controller
 - [x] Adição de camada de Service
-- [ ] Adição de camada de persistência em banco de dados
+- [x] Adição de camada de persistência em banco de dados
 - [ ] ...
 #
 ### Informação Adicional

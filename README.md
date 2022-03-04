@@ -8,7 +8,9 @@
 - [x] Adição de camada de Controller
 - [x] Adição de camada de Service
 - [x] Adição de camada de persistência em banco de dados
-- [ ] ...
+- [x] Adição de camadas do Book
+- [x] Uso do Flyway
+- [ ] 
 #
 ### Informação Adicional
 

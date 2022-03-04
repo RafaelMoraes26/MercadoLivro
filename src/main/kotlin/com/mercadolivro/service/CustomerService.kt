@@ -15,7 +15,7 @@ class CustomerService(val customerRepository: CustomerRepository) {
         return customerRepository.findAll().toList()
     }
 
-    fun getSpecificCustomer(id: Int): Optional<CustomerModel> {
+    fun getSpecificCustomerById(id: Int): Optional<CustomerModel> {
         return customerRepository.findById(id)
     }
 

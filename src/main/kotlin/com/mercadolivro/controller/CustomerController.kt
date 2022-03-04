@@ -18,9 +18,9 @@ class CustomerController (val customerService: CustomerService) {
         return customerService.getAllCustomers(name)
     }
 
-    @GetMapping("/{id}")
-    fun getSpecificCustomer(@PathVariable id: Int): Optional<CustomerModel> {
-        return customerService.getSpecificCustomer(id)
+    @GetMapping("/specific")
+    fun getSpecificCustomer(@RequestParam customer_id: Int): Optional<CustomerModel> {
+        return customerService.getSpecificCustomerById(customer_id)
     }
 
     @PostMapping
@@ -37,15 +37,15 @@ class CustomerController (val customerService: CustomerService) {
         customerService.createMultipleCustomers(customers)
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun updateCustomer(@PathVariable id: Int, @RequestBody customer: PutCustomerRequest) {
-        customerService.updateCustomer(customer.toCustomerModel(id))
+    fun updateCustomer(@RequestParam customer_id: Int, @RequestBody customer: PutCustomerRequest) {
+        customerService.updateCustomer(customer.toCustomerModel(customer_id))
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun deleteCustomer(@PathVariable id: Int) {
-        customerService.deleteCustomer(id)
+    fun deleteCustomer(@RequestParam customer_id: Int) {
+        customerService.deleteCustomer(customer_id)
     }
 }

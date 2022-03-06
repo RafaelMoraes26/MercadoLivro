@@ -9,7 +9,6 @@ import com.mercadolivro.service.CustomerService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -29,23 +28,23 @@ class BookController(
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     fun createBook(@RequestBody request: PostBookRequest) {
-        val customer = customerService.getSpecificCustomerById(request.customerId)
+        val customer = customerService.findSpecificCustomerById(request.customerId)
         bookService.createBook(request.toBookModel(customer.get()))
     }
 
     @GetMapping
     fun findAllBooks(): List<BookModel> {
-        return bookService.findAll()
+        return bookService.findAllBooks()
     }
 
     @GetMapping("/active")
     fun findActiveBooks(): List<BookModel> {
-        return bookService.findActives()
+        return bookService.findActiveBooks()
     }
 
     @GetMapping("/specific")
     fun findBookById(@RequestParam book_id: Int): Optional<BookModel> {
-        return bookService.findById(book_id)
+        return bookService.findSpecificBookById(book_id)
     }
 
     @DeleteMapping("/delete")
@@ -57,7 +56,7 @@ class BookController(
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun updateBook(@RequestParam book_id: Int, @RequestBody book: PutBookRequest) {
-        val bookSaved = bookService.findById(book_id)
+        val bookSaved = bookService.findSpecificBookById(book_id)
         if(bookSaved.isPresent) bookService.updateBook(book.toBookModel(bookSaved.get()))
     }
 

@@ -15,12 +15,12 @@ class CustomerController (val customerService: CustomerService) {
 
     @GetMapping
     fun getAllCustomers(@RequestParam name: String?): List<CustomerModel> {
-        return customerService.getAllCustomers(name)
+        return customerService.findAllCustomers(name)
     }
 
     @GetMapping("/specific")
     fun getSpecificCustomer(@RequestParam customer_id: Int): Optional<CustomerModel> {
-        return customerService.getSpecificCustomerById(customer_id)
+        return customerService.findSpecificCustomerById(customer_id)
     }
 
     @PostMapping
@@ -40,7 +40,8 @@ class CustomerController (val customerService: CustomerService) {
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun updateCustomer(@RequestParam customer_id: Int, @RequestBody customer: PutCustomerRequest) {
-        customerService.updateCustomer(customer.toCustomerModel(customer_id))
+        val customerSaved = customerService.findSpecificCustomerById(customer_id)
+        if(customerSaved.isPresent) customerService.updateCustomer(customer.toCustomerModel(customerSaved.get()))
     }
 
     @DeleteMapping("/delete")
